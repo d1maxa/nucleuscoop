@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Win32;
 
 namespace Nucleus.Gaming
 {
@@ -12,7 +11,7 @@ namespace Nucleus.Gaming
     {
         private Engine engine;
         private string js;
-        
+
         public GameHookInfo Hook = new GameHookInfo();
         public GameOption[] Options = new GameOption[0];
 
@@ -33,7 +32,6 @@ namespace Nucleus.Gaming
         public string GameName;
         public int MaxPlayers;
         public int MaxPlayersOneMonitor;
-        public int PauseBetweenStarts;
 
         public string StartArguments;
         public string BinariesFolder;
@@ -47,10 +45,8 @@ namespace Nucleus.Gaming
         public string LauncherExe;
         public string LauncherTitle;
         public Action Play;
-        public Action SetupSse;
         public List<CustomStep> CustomSteps = new List<CustomStep>();
         public string JsFileName;
-        public bool LockMouse;
 
         public Type HandlerType
         {
@@ -151,17 +147,6 @@ namespace Nucleus.Gaming
             }
 
             return context;
-        }
-
-        public string GetSteamLanguage()
-        {
-            string result;
-            if (Environment.Is64BitOperatingSystem)
-                result = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Valve\Steam", "Language", null);
-            else
-                result = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Valve\Steam", "Language", null);
-
-            return result;
         }
     }
 }
