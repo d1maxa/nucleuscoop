@@ -333,7 +333,7 @@ namespace Nucleus.Coop
                 handlerThread.Start();
             }
 
-            WindowState = FormWindowState.Minimized;
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void SetBtnToPlay()
@@ -344,12 +344,7 @@ namespace Nucleus.Coop
         private void handler_Ended()
         {
             handler = null;
-            if (handlerThread != null)
-            {
-                handlerThread.Abort();
-                handlerThread = null;
-            }
-            Invoke(new Action(SetBtnToPlay));
+            SetBtnToPlay();
         }
 
         private void UpdateGameManager(object state)
@@ -374,11 +369,9 @@ namespace Nucleus.Coop
                     handler.Update(handler.TimerInterval);
                     Thread.Sleep(TimeSpan.FromMilliseconds(handler.TimerInterval));
                 }
-                catch(ThreadAbortException)
+                catch
                 {
-                    return;
                 }
-                catch { }
             }
         }
 

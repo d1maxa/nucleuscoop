@@ -120,9 +120,9 @@ namespace Nucleus.Gaming
         {
             Control parent = (Control)sender;
 
-            if (parent != SelectedControl && parent is IRadioControl)
+            if (parent != SelectedControl)
             {
-                IRadioControl high = (IRadioControl) parent;
+                IRadioControl high = (IRadioControl)parent;
                 high.UserOver();
             }
         }
@@ -131,7 +131,7 @@ namespace Nucleus.Gaming
         {
             Control parent = (Control)sender;
 
-            if (parent != SelectedControl && parent is IRadioControl)
+            if (parent != SelectedControl)
             {
                 IRadioControl high = (IRadioControl)parent;
                 high.UserLeave();
